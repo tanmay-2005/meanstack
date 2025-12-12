@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Add Two Numbers</title>
+  <style>
+    body{font-family:Segoe UI,Arial,Helvetica,sans-serif;padding:24px}
+    label{display:block;margin-top:12px}
+    input[type=number]{width:140px;padding:6px;margin-top:4px}
+    button{margin-top:12px;padding:8px 12px}
+    #result{margin-top:16px;font-weight:600}
+  </style>
+</head>
+<body>
+  <h1>Add Two Numbers</h1>
+  <form id="addForm">
+    <label for="a">Number A</label>
+    <input id="a" name="a" type="number" step="any" inputmode="decimal" required>
+
+    <label for="b">Number B</label>
+    <input id="b" name="b" type="number" step="any" inputmode="decimal" required>
+
+    <div>
+      <button type="submit">Add</button>
+      <button type="button" id="clear">Clear</button>
+    </div>
+
+    <div id="result" aria-live="polite"></div>
+  </form>
+
+  <script>
+    const form = document.getElementById('addForm');
+    const resultEl = document.getElementById('result');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const a = parseFloat(document.getElementById('a').value) || 0;
+      const b = parseFloat(document.getElementById('b').value) || 0;
+      const sum = a + b;
+      const display = Number.isFinite(sum) ? sum : 'Invalid input';
+      resultEl.textContent = `Result: ${display}`;
+    });
+
+    document.getElementById('clear').addEventListener('click', function(){
+      document.getElementById('a').value = '';
+      document.getElementById('b').value = '';
+      resultEl.textContent = '';
+      document.getElementById('a').focus();
+    });
+  </script>
+</body>
+</html>

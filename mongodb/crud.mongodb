@@ -1,0 +1,39 @@
+//show databases
+show dbs
+
+//create new database
+use parul
+
+//change to new database
+db.createCollection("users")
+
+//retrieve all documents
+db.users.find()
+
+//insert one document
+db.users.insertOne({name: "Parul", age: 32, city: "Vadodara"})
+
+//insert multiple documents
+db.users.insertMany([
+    {name: "Alice", age: 30, city: "Los Angeles"},
+    {name: "Bob", age: 28, city: "Chicago"},
+    {name: "Charlie", age: 35, city: "Houston"}
+])
+
+//update one document
+db.users.updateOne(
+    {name: "Parul"},
+    {$set: {age: 26}}
+)
+
+//update multiple documents
+db.users.updateMany(
+    {},
+    {$set: {status: "active"}}
+)
+
+//delete one document
+db.users.deleteOne({name: "Parul"})
+
+//delete multiple documents
+db.users.deleteMany({status: "active"})
